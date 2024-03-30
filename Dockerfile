@@ -19,15 +19,9 @@ RUN yarn build
 
 FROM base
 WORKDIR /usr/src/wpp-server/
-RUN apk add --no-cache chromium
-RUN yarn cache clean
-RUN yarn add @babel/runtime && \
-    yarn add sharp mongoose prom-client --ignore-engines && \
-    yarn cache clean
-COPY . .
-COPY --from=build /usr/src/wpp-server/ /usr/src/wpp-server/
 RUN apk update && \
     apk add --no-cache \
+    chromium \
     vips-dev \
     fftw-dev \
     gcc \
@@ -35,5 +29,10 @@ RUN apk update && \
     make \
     libc6-compat \
     && rm -rf /var/cache/apk/*
+RUN yarn add @babel/runtime && \
+    yarn add sharp mongoose prom-client --ignore-engines && \
+    yarn cache clean
+COPY . .
+COPY --from=build /usr/src/wpp-server/ /usr/src/wpp-server/
 EXPOSE 21465
 ENTRYPOINT ["node", "dist/server.js"]
