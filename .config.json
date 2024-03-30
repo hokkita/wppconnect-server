@@ -90,6 +90,8 @@
     "region": "sa-east-1",
     "access_key_id": "",
     "secret_key": "",
-    "defaultBucketName": ""
+    "defaultBucketName": "",
+    "endpoint": "",
+    "forcePathStyle": ""
   }
 }
