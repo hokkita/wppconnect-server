@@ -1,4 +1,6 @@
-export default {
+import fs from 'fs';
+
+const defaultConfig = {
   secretKey: 'THISISMYSECURETOKEN',
   host: 'http://localhost',
   port: '21465',
@@ -103,3 +105,17 @@ export default {
     forcePathStyle: null,
   },
 };
+
+let config = defaultConfig;
+
+try {
+  const configFile = fs.readFileSync('./config/config.json', 'utf8');
+  const jsonConfig = JSON.parse(configFile);
+  config = { ...defaultConfig, ...jsonConfig };
+} catch (error) {
+  console.error(
+    'Error reading or parsing config file, falling back to default values.'
+  );
+}
+
+export default config;
