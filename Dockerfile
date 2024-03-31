@@ -35,4 +35,4 @@ RUN yarn add @babel/runtime && \
 COPY . .
 COPY --from=build /usr/src/wpp-server/ /usr/src/wpp-server/
 EXPOSE 21465
-ENTRYPOINT ["npm", "start"]
+ENTRYPOINT ["/bin/sh", "./.docker/entrypoints/start.sh"]

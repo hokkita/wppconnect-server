@@ -2,11 +2,15 @@ version: '3'
 
 services:
   wppconnect:
-    build:
-      context: .
+    # Use this if you want to build image from dockerfile, comment out if you use the built image
+    # build:
+    #  context: .
+    image: maxerism/wppconnect-server # Use this if you want to use built image
+    restart: always
     volumes:
       - ./config:/usr/src/wpp-server/config
       - ./wppconnect_tokens:/usr/src/wpp-server/tokens
+      - ./userDataDir:/usr/src/wpp-server/userDataDir
     ports:
       - '21465:21465'
 
