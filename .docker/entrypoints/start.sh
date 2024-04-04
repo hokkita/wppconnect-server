@@ -14,7 +14,7 @@ if [ -f config/config.json ]; then
     echo "Using existing config."
 else
     echo "Creating new config => config/config.json"
-    cp ./.config.json.example config/config.json
+    cp ./.config.example.json config/config.json
 fi
 find_and_delete_lock_files "$rootDir$profiles_locations"
 }

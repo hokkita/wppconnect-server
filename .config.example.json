@@ -22,7 +22,8 @@
     "onPollResponse": true,
     "onRevokedMessage": true,
     "onLabelUpdated": true,
-    "ignore": []
+    "onSelfMessage": false,
+    "ignore": ["status@broadcast"]
   },
   "websocket": {
     "autoDownload": false,
